@@ -42,7 +42,8 @@ class _HomeScreenSearchState extends State<HomeScreenSearch> {
         future: newsFuture,
         builder: (buildContext,snapshot){
           if(snapshot.hasData){
-            return HomeTabs(snapshot.data!.Sources); //******
+            print(snapshot.error);
+            return HomeTabs(snapshot.data!.sources); //******
           }
           else if(snapshot.hasError){
             return Text('error loading data'); // assignment e3mel zorar reload

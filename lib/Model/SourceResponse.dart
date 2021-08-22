@@ -1,20 +1,11 @@
-class SourceResponse
-{
-  String status ;
-  List<Source> Sources ;
+class SourceResponse {
+  String status;
 
-  SourceResponse({required this.Sources , required this.status});
+  List<Source> sources;
 
-  factory SourceResponse.fromJson( Map<String , dynamic> map )
-  {
-      List list = map['sources'];
-      List<Source> sources = list.map((d) => Source.fromJson(map)).toList();
-      return SourceResponse(
-          Sources:sources,
-          status: map['status']
-      );
-  }
-
+  SourceResponse.fromJson(Map<String, dynamic> map):
+        status = map['status'],
+        sources = List<Source>.from(map["sources"].map((it) => Source.fromJson(it)));
 }
 
 class Source {
@@ -27,20 +18,12 @@ class Source {
   String language;
 
 
-  Source({required this.id, required this.name, required this.description,
-          required this.url, required this.language, required this.category,
-          required this.country});
-
-  factory Source.fromJson(Map<String , dynamic>  map )
-  {
-    return Source(
-      id: map['id'],
-      name: map['name'],
-      description: map['description'],
-      url: map['url'],
-      category: map['category'],
-      country: map['country'],
-      language: map['language']
-    );
-  }
+  Source.fromJson(Map<String , dynamic>  map ):
+        id = map["id"] != null?map["id"]:'' ,
+        name = map["name"]!=null?map["name"]:'',
+        description = map["description"]!=null?map["description"]:'',
+        url = map["url"]!=null?map["url"]:'',
+        category = map["category"]!=null?map["category"]:'',
+        language = map["language"]!=null?map["language"]:'',
+        country = map["country"]!=null?map["country"]:'';
 }

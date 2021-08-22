@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:news_app/Home.dart';
 import 'package:news_app/Model/SourceResponse.dart';
 import 'package:news_app/View/TabItem.dart';
-
 import '../NewsFragment.dart';
 
 class HomeTabs extends StatefulWidget {
