@@ -7,9 +7,8 @@ class SourceResponse
 
   factory SourceResponse.fromJson( Map<String , dynamic> map )
   {
-
       List list = map['sources'];
-     List<Source> sources = list.map((d) => Source.fromJson(map)).toList();
+      List<Source> sources = list.map((d) => Source.fromJson(map)).toList();
       return SourceResponse(
           Sources:sources,
           status: map['status']
