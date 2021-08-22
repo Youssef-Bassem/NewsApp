@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/Model/SourceResponse.dart';
+import '../ThemeData.dart';
 
 class TabItem extends StatelessWidget {
   late Source source;
@@ -15,7 +16,7 @@ class TabItem extends StatelessWidget {
             padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(24),
-              color: Theme.of(context).primaryColor,
+              color: MyThemeData.mainTheme.primaryColor,
             ),
             child: Text(
               source.name,
@@ -26,11 +27,11 @@ class TabItem extends StatelessWidget {
               padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: Theme.of(context).primaryColor,width: 1)
+              border: Border.all(color: MyThemeData.mainTheme.primaryColor,width: 1)
             ),
             child: Text(
               source.name,
-              style: TextStyle(color: Theme.of(context).primaryColor),
+              style: TextStyle(color: MyThemeData.mainTheme.primaryColor),
             ),
           );
   }
