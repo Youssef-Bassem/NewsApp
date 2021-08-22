@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:news_app/Api/ApiManager.dart';
-
-import 'SourceResponse.dart';
+import 'package:news_app/View/HomeTabScreen.dart';
+import 'Model/SourceResponse.dart';
 
 
 class HomeScreenSearch extends StatefulWidget {
@@ -38,7 +38,19 @@ class _HomeScreenSearchState extends State<HomeScreenSearch> {
         backgroundColor: HomeScreenSearch.color,
         centerTitle: true,
       ),
-
+      body: FutureBuilder<SourceResponse>(
+        future: newsFuture,
+        builder: (buildContext,snapshot){
+          if(snapshot.hasData){
+            return HomeTabs(snapshot.data!.Sources); //******
+          }
+          else if(snapshot.hasError){
+            return Text('error loading data'); // assignment e3mel zorar reload
+          }
+          return Center(
+            child: CircularProgressIndicator());
+        }
+      ),
     );
   }
 }
