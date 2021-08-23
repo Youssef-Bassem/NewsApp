@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/pattern.png"),
-                  fit: BoxFit.fill,
+                  fit: BoxFit.fitHeight,
                 ),
               ),
             ),
