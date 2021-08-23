@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/HomeScreenSearch.dart';
 
+import 'SideMenu.dart';
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -23,7 +25,7 @@ class _HomeState extends State<Home> {
         backgroundColor: color,
         centerTitle: true,
       ),
-      drawer: Container(),
+      drawer: SideMenu(),
       body: SafeArea(
         child: Stack(
           children: [
