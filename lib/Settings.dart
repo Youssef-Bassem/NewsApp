@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'Controller/AppProvider.dart';
 import 'SideMenu.dart';
 
 class  Settings extends StatefulWidget {
@@ -12,8 +14,11 @@ class _SettingsState extends State<Settings> {
   int _value = 1;
   static const color = Color(0xFF39A552);
 
+  late AppProvider provider;
+
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of<AppProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -61,12 +66,14 @@ class _SettingsState extends State<Settings> {
                 items: [
                   DropdownMenuItem(
                     onTap: (){
+                      provider.changeLanguage('en');
                     },
                     child: Text("English"),
                     value: 1,
                   ),
                   DropdownMenuItem(
                     onTap: (){
+                      provider.changeLanguage('ar');
                     },
                     child: Text("Arabic"),
                     value: 2,
@@ -74,14 +81,14 @@ class _SettingsState extends State<Settings> {
                 ],
                 onChanged: (value) {
                   setState(() {
-                     _value = value as int;
+                    _value = value as int;
                   });
                 },
                 style: TextStyle(color: Colors.green , ) , iconEnabledColor: Colors.green,
 
                 hint:Text('$_value'),
-                ),
               ),
+            ),
           ],
         ),
       ),

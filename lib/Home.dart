@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/HomeScreenSearch.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'Controller/AppProvider.dart';
 import 'SideMenu.dart';
 
 class Home extends StatefulWidget {
@@ -9,11 +12,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  late AppProvider provider;
+
   static const color = Color(0xFF39A552);
   late HomeScreenSearch homeScreenSearch;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
+    provider = Provider.of<AppProvider>(context);
     return Scaffold(
       appBar: AppBar(
         shape: ContinuousRectangleBorder(
