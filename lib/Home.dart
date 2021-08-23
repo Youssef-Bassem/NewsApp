@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/HomeScreenSearch.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -7,6 +8,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   static const color = Color(0xFF39A552);
+  late HomeScreenSearch homeScreenSearch;
 
   @override
   Widget build(BuildContext context) {
@@ -68,13 +70,68 @@ class _HomeState extends State<Home> {
       children: [
         Expanded(
           child: IconButton(
-              iconSize: 148, onPressed: () {}, icon: Image.asset(image1)),
+              iconSize: 148,
+              onPressed: () {
+                detectPage(image1);
+              },
+              icon: Image.asset(image1)),
         ),
         Expanded(
           child: IconButton(
-              iconSize: 148, onPressed: () {}, icon: Image.asset(image2)),
+              iconSize: 148,
+              onPressed: () {
+                detectPage(image2);
+              },
+              icon: Image.asset(image2)),
         ),
       ],
     );
   }
+
+  void detectPage(String image)
+  {
+    if(image == "assets/sports@3x.png")
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreenSearch("sports")),
+      );
+    }
+    else if(image == "assets/politics@3x.png")
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreenSearch("politics")),
+      );
+    }
+    else if(image == "assets/health@3x.png")
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreenSearch("health")),
+      );
+    }
+    else if(image == "assets/business@3x.png")
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreenSearch("business")),
+      );
+    }
+    else if(image == "assets/enviroment@3x.png")
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreenSearch("enviroment")),
+      );
+    }
+    else if(image == "assets/science@3x.png")
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreenSearch("science")),
+      );
+    }
+  }
+
 }
