@@ -13,7 +13,7 @@ class NewsListItem extends StatelessWidget {
           Image.network(news.urlToImage.toString()),
           Text(news.title,style: TextStyle(fontWeight: FontWeight.bold),),
           SizedBox(height: 8,),
-          Text(news.description,maxLines: 2,overflow: TextOverflow.ellipsis,),
+          Text(news.description,maxLines: 4,overflow: TextOverflow.ellipsis,),
           SizedBox(height: 20,)
         ],
       ),

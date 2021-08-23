@@ -55,19 +55,37 @@ class _HomeScreenSearchState extends State<HomeScreenSearch> {
       ),
       drawer: SideMenu(),
 
-      body: FutureBuilder<SourceResponse>(
-        future: newsFuture,
-        builder: (buildContext,snapshot){
-          if(snapshot.hasData){
-            print(snapshot.error);
-            return HomeTabs(snapshot.data!.sources,searchQuery); //******
-          }
-          else if(snapshot.hasError){
-            return Text('error loading data'); // assignment e3mel zorar reload
-          }
-          return Center(
-            child: CircularProgressIndicator());
-        }
+      body: SafeArea(
+        child: Container(
+          padding: EdgeInsets.only(left: 15,right: 15),
+          child: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/pattern.png"),
+                    fit: BoxFit.fitHeight,
+                  ),
+                ),
+              ),
+
+              FutureBuilder<SourceResponse>(
+                future: newsFuture,
+                builder: (buildContext,snapshot){
+                  if(snapshot.hasData){
+                    print(snapshot.error);
+                    return HomeTabs(snapshot.data!.sources,searchQuery); //******
+                  }
+                  else if(snapshot.hasError){
+                    return Text('error loading data'); // assignment e3mel zorar reload
+                  }
+                  return Center(
+                    child: CircularProgressIndicator());
+                }
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

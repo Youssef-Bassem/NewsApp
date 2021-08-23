@@ -6,7 +6,7 @@ import 'dart:convert';
 Future<SourceResponse> getNewsSources(String CategoryName) async
 {
   final uri = Uri.https('newsapi.org', '/v2/top-headlines/sources', {
-    'apikey':'1b90d7da7e3e4bfdb95a7e90565e52d3',
+    'apikey':'06efb20fc53a4ae88a87f707879bf405',
     'category':'$CategoryName'
   });
   final response = await http.get(uri);
@@ -26,7 +26,7 @@ Future<SourceResponse> getNewsSources(String CategoryName) async
 Future<NewsResponse> loadNews(Source source, searchItem) async {
   final uri = Uri.https('newsapi.org', '/v2/everything', {
     'q': '$searchItem',
-    'apikey': '1b90d7da7e3e4bfdb95a7e90565e52d3',
+    'apikey': '06efb20fc53a4ae88a87f707879bf405',
     'sources': source.id
   });
   final response = await http.get(uri);

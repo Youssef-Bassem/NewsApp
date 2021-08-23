@@ -27,21 +27,25 @@ class _HomeTabsState extends State<HomeTabs> {
     return DefaultTabController(
       length: widget.sources.length,
       child: Container(
-        padding: EdgeInsets.only(top: 8),
+        //padding: EdgeInsets.only(top: 0,bottom: 0),
         child: Column(
           children: [
-            TabBar(
-                onTap: (index) {
-                  setState(() {
-                    selectedIndex = index;
-                  });
-                },
-                indicatorColor: Colors.transparent,
-                isScrollable: true,
-                tabs: widget.sources
-                    .map((source) => TabItem(source,
-                        widget.sources.indexOf(source) == selectedIndex))
-                    .toList()),
+            Padding(
+              padding: const EdgeInsets.only(top: 8,bottom: 8),
+              child: TabBar(
+                  onTap: (index) {
+                    setState(() {
+                      selectedIndex = index;
+                    });
+                  },
+                  indicatorColor: Colors.transparent,
+                  isScrollable: true,
+                  tabs: widget.sources
+                      .map((source) => TabItem(source,
+                          widget.sources.indexOf(source) == selectedIndex))
+                      .toList()
+              ),
+            ),
             Expanded(
               child: TabBarView(
                 children: widget.sources.map((source) => NewsFragment(source,this.searchQuery)).toList()
