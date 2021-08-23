@@ -7,19 +7,24 @@ import 'Model/SourceResponse.dart';
 
 class NewsFragment extends StatefulWidget {
   final Source source;
-  NewsFragment(this.source);
+  late String searchQuery;
+
+  NewsFragment(this.source,this.searchQuery);
 
   @override
-  _NewsFragmentState createState() => _NewsFragmentState();
+  _NewsFragmentState createState() => _NewsFragmentState(this.searchQuery);
 }
 
 class _NewsFragmentState extends State<NewsFragment> {
   late Future <NewsResponse> newsFuture;
+  late String searchQuery;
+
+  _NewsFragmentState(this.searchQuery);
 
   @override
   void initState() {
     super.initState();
-    newsFuture = loadNews(widget.source);
+    newsFuture = loadNews(widget.source,this.searchQuery);
   }
   @override
   Widget build(BuildContext context) {
