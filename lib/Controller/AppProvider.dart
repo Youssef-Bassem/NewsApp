@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/UserPreferencesData.dart';
+import '../Data/UserPreferencesData.dart';
 
 class AppProvider extends ChangeNotifier {
   String currentLanguage = "en";

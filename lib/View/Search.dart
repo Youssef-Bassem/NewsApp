@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:news_app/Api/ApiManager.dart';
 import 'package:news_app/View/HomeTabScreen.dart';
 import 'HomeScreenSearch.dart';
-import 'Model/SourceResponse.dart';
+import '../Model/SourceResponse.dart';
 
 class Search extends StatefulWidget {
   late var Category;

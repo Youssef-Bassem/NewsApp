@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/Model/SourceResponse.dart';
-import '../ThemeData.dart';
+import '../Data/ThemeData.dart';
 
 class TabItem extends StatelessWidget {
   late Source source;

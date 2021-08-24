@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/Home.dart';
-import 'package:news_app/HomeScreenSearch.dart';
+import 'View/Home.dart';
+import 'View/HomeScreenSearch.dart';
 import 'package:provider/provider.dart';
 import 'Controller/AppProvider.dart';
-import 'UserPreferencesData.dart';
+import 'Data/UserPreferencesData.dart';
 import 'l10n/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

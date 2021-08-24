@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/HomeScreenSearch.dart';
+import 'HomeScreenSearch.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'Controller/AppProvider.dart';
+import '../Controller/AppProvider.dart';
 import 'SideMenu.dart';
 
 class Home extends StatefulWidget {

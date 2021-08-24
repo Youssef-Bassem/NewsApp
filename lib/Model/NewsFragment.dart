@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/HomeScreenSearch.dart';
+import '../View/HomeScreenSearch.dart';
 import 'package:news_app/Model/NewsResponse.dart';
 import 'package:news_app/View/NewsListItem.dart';
-import 'Api/ApiManager.dart';
-import 'Model/SourceResponse.dart';
+import '../Api/ApiManager.dart';
+import 'SourceResponse.dart';
 
 class NewsFragment extends StatefulWidget {
   final Source source;

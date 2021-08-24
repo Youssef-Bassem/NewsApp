@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'Controller/AppProvider.dart';
+import '../Controller/AppProvider.dart';
 import 'SideMenu.dart';
 
 class  Settings extends StatefulWidget {

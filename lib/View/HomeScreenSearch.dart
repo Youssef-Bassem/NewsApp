@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:news_app/Api/ApiManager.dart';
-import 'package:news_app/SideMenu.dart';
+import 'SideMenu.dart';
 import 'package:news_app/View/HomeTabScreen.dart';
-import 'Model/SourceResponse.dart';
+import '../Model/SourceResponse.dart';
 import 'Search.dart';
 
 
