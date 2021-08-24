@@ -1,5 +1,17 @@
 {
     "language" : "Language",
     "title" : "News App",
-    "sports" : "Sports"
+    "sports" : "Sports",
+    "politics" : "Politics",
+    "health" : "Health",
+    "business" : "Business",
+    "environment" : "Environment",
+    "science" : "Science",
+    "homeHead" : "Pick your category of interest",
+    "categories" : "Categories",
+    "settings" : "Settings",
+    "arabic" : "Arabic",
+    "english" : "English",
+    "search" : "Search",
+    "error" : "error loading data"
 }

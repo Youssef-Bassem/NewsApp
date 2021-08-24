@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/Controller/AppProvider.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 import 'Home.dart';
 import 'Settings.dart';
@@ -10,8 +14,11 @@ class SideMenu extends StatefulWidget {
 }
 
 class _SideMenuState extends State<SideMenu>{
+  late AppProvider provider;
+
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of<AppProvider>(context);
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -19,7 +26,7 @@ class _SideMenuState extends State<SideMenu>{
           DrawerHeader(
             child: Center(
                 child: Text(
-                  'News App!',
+                  AppLocalizations.of(context)!.title,
                   style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.w900),
                 )),
             decoration: BoxDecoration(
@@ -28,7 +35,7 @@ class _SideMenuState extends State<SideMenu>{
           ),
           ListTile(
             leading: Icon(Icons.category, color: Colors.black),
-            title: Text('Categories' ,
+            title: Text(AppLocalizations.of(context)!.categories ,
                 style: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold)
             ),
             onTap: () => {
@@ -42,7 +49,7 @@ class _SideMenuState extends State<SideMenu>{
           ),
           ListTile(
             leading: Icon(Icons.settings, color: Colors.black,),
-            title: Text('Settings',
+            title: Text(AppLocalizations.of(context)!.settings,
               style: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
             ),
             onTap: () => {

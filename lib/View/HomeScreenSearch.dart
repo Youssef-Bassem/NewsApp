@@ -7,6 +7,8 @@ import 'SideMenu.dart';
 import 'package:news_app/View/HomeTabScreen.dart';
 import '../Model/SourceResponse.dart';
 import 'Search.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 
 class HomeScreenSearch extends StatefulWidget {
@@ -77,7 +79,7 @@ class _HomeScreenSearchState extends State<HomeScreenSearch> {
                     return HomeTabs(snapshot.data!.sources,""); //******
                   }
                   else if(snapshot.hasError){
-                    return Text('error loading data'); // assignment e3mel zorar reload
+                    return Text(AppLocalizations.of(context)!.error); // assignment e3mel zorar reload
                   }
                   return Center(
                     child: CircularProgressIndicator());
@@ -97,7 +99,7 @@ class _HomeScreenSearchState extends State<HomeScreenSearch> {
       controller: _searchQueryController,
       autofocus: true,
       decoration: InputDecoration(
-        hintText: "Search Data...",
+        hintText: AppLocalizations.of(context)!.search,
         border: InputBorder.none,
         hintStyle: TextStyle(color: Colors.white30),
       ),

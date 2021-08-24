@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
           bottomLeft: Radius.circular(80),
           bottomRight: Radius.circular(80),
         )),
-        title: Text('News App'),
+        title: Text(AppLocalizations.of(context)!.title),
         backgroundColor: color,
         centerTitle: true,
       ),
@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
               child: Column(
                 children: [
                   Text(
-                    'Pick your category of interest',
+                    AppLocalizations.of(context)!.homeHead,
                     style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
@@ -102,35 +102,35 @@ class _HomeState extends State<Home> {
     {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreenSearch("sports")),
+        MaterialPageRoute(builder: (context) => HomeScreenSearch(AppLocalizations.of(context)!.sports)),
       );
     }
     else if(image == "assets/politics@3x.png")
     {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreenSearch("politics")),
+        MaterialPageRoute(builder: (context) => HomeScreenSearch(AppLocalizations.of(context)!.politics)),
       );
     }
     else if(image == "assets/health@3x.png")
     {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreenSearch("health")),
+        MaterialPageRoute(builder: (context) => HomeScreenSearch(AppLocalizations.of(context)!.health)),
       );
     }
     else if(image == "assets/business@3x.png")
     {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreenSearch("business")),
+        MaterialPageRoute(builder: (context) => HomeScreenSearch(AppLocalizations.of(context)!.business)),
       );
     }
     else if(image == "assets/enviroment@3x.png")
     {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreenSearch("enviroment")),
+        MaterialPageRoute(builder: (context) => HomeScreenSearch(AppLocalizations.of(context)!.environment)),
       );
     }
     else if(image == "assets/science@3x.png")

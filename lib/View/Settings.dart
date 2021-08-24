@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../Controller/AppProvider.dart';
 import 'SideMenu.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class  Settings extends StatefulWidget {
 
@@ -28,7 +30,7 @@ class _SettingsState extends State<Settings> {
               bottomRight: Radius.circular(80),
             )
         ),
-        title: Text('News App'),
+        title: Text(AppLocalizations.of(context)!.title),
         backgroundColor: color,
         centerTitle: true,
       ),
@@ -45,9 +47,10 @@ class _SettingsState extends State<Settings> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              padding: EdgeInsets.fromLTRB(25, 30, 0, 0),
+              padding: EdgeInsets.fromLTRB(25, 30, 25, 0),
               child: Text(
-                  'Language',
+                  AppLocalizations.of(context)!.language
+                  ,
                   style: TextStyle(fontSize: 16 , fontWeight: FontWeight.w900)
               ),
             ),
@@ -68,14 +71,14 @@ class _SettingsState extends State<Settings> {
                     onTap: (){
                       provider.changeLanguage('en');
                     },
-                    child: Text("English"),
+                    child: Text(AppLocalizations.of(context)!.english),
                     value: 1,
                   ),
                   DropdownMenuItem(
                     onTap: (){
                       provider.changeLanguage('ar');
                     },
-                    child: Text("Arabic"),
+                    child: Text(AppLocalizations.of(context)!.arabic),
                     value: 2,
                   ),
                 ],

@@ -5,6 +5,8 @@ import 'package:news_app/Model/NewsResponse.dart';
 import 'package:news_app/View/NewsListItem.dart';
 import '../Api/ApiManager.dart';
 import 'SourceResponse.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class NewsFragment extends StatefulWidget {
   final Source source;
@@ -41,7 +43,7 @@ class _NewsFragmentState extends State<NewsFragment> {
             );
           }
           else if(snapshot.hasError){
-            return Text('Error loading news');
+            return Text(AppLocalizations.of(context)!.error);
           }
           return Center(
             child: CircularProgressIndicator());

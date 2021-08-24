@@ -5,6 +5,8 @@ import 'package:news_app/Api/ApiManager.dart';
 import 'package:news_app/View/HomeTabScreen.dart';
 import 'HomeScreenSearch.dart';
 import '../Model/SourceResponse.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class Search extends StatefulWidget {
   late var Category;
@@ -76,7 +78,7 @@ class _SearchState extends State<Search> {
                       return HomeTabs(snapshot.data!.sources,searchQuery); //******
                     }
                     else if(snapshot.hasError){
-                      return Text('error loading data'); // assignment e3mel zorar reload
+                      return Text(AppLocalizations.of(context)!.error); // assignment e3mel zorar reload
                     }
                     return Center(
                         child: CircularProgressIndicator());

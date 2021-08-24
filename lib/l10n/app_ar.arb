@@ -1,5 +1,17 @@
 {
     "language" : "اللغة",
     "title" : "الأخبار",
-    "sports" : "الرياضات"
+    "sports" : "الرياضات",
+    "politics" : "السياسة",
+    "health" : "الصحة",
+    "business" : "العمل",
+    "environment" : "البيئة",
+    "science" : "العلوم",
+    "homeHead" : "اختر فئة اهتمامك",
+    "categories" : "الفئات",
+    "settings" : "الاعدادات",
+    "arabic" : "العربية",
+    "english" : "الانجليزية",
+    "search" : "بيانات البحث",
+    "error" : "خطأ في تحميل البيانات"
 }
