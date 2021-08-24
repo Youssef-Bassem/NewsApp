@@ -10,6 +10,9 @@ class NewsListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime time1 = DateTime.parse(news.publishedAt);
+    String Timeago = convertToAgo(time1);
+
     return Container(
       child: Column(
         children: [
@@ -23,12 +26,38 @@ class NewsListItem extends StatelessWidget {
             },
             child: Image.network(news.urlToImage.toString()),
           ),
-          Text(news.title,style: TextStyle(fontWeight: FontWeight.bold),),
           SizedBox(height: 8,),
+          Container(alignment: Alignment.centerLeft,
+              child:Text(news.source.name,style:TextStyle(fontSize: 14,color: Colors.grey))
+          ),
+          SizedBox(height: 5,),
+          Container(alignment: Alignment.centerLeft,child: Text(news.title,style: TextStyle(fontWeight: FontWeight.bold),)),
+          SizedBox(height: 5,),
           Text(news.description,maxLines: 4,overflow: TextOverflow.ellipsis,),
-          SizedBox(height: 20,)
+          SizedBox(height: 5,),
+          Container(alignment: Alignment.centerRight,
+              child:Text('$Timeago',style:TextStyle(fontSize: 14,color: Colors.grey))
+          ),
+          SizedBox(height: 25,),
         ],
       ),
     );
   }
+
+  String convertToAgo(DateTime input){
+    Duration diff = DateTime.now().difference(input);
+
+    if(diff.inDays >= 1){
+      return '${diff.inDays} days ago';
+    } else if(diff.inHours >= 1){
+      return '${diff.inHours} hours ago';
+    } else if(diff.inMinutes >= 1){
+      return '${diff.inMinutes} minutes ago';
+    } else if (diff.inSeconds >= 1){
+      return '${diff.inSeconds} seconds ago';
+    } else {
+      return 'just now';
+    }
+  }
+
 }

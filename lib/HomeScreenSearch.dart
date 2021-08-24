@@ -26,7 +26,7 @@ class _HomeScreenSearchState extends State<HomeScreenSearch> {
 
   TextEditingController _searchQueryController = TextEditingController();
   bool _isSearching = false;
-  late String searchQuery = "$Category";
+  late String searchQuery = "";
 
   _HomeScreenSearchState(this.Category);
 
@@ -74,7 +74,7 @@ class _HomeScreenSearchState extends State<HomeScreenSearch> {
                 builder: (buildContext,snapshot){
                   if(snapshot.hasData){
                     print(snapshot.error);
-                    return HomeTabs(snapshot.data!.sources,searchQuery); //******
+                    return HomeTabs(snapshot.data!.sources,""); //******
                   }
                   else if(snapshot.hasError){
                     return Text('error loading data'); // assignment e3mel zorar reload
