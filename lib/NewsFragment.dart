@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/HomeScreenSearch.dart';
 import 'package:news_app/Model/NewsResponse.dart';
 import 'package:news_app/View/NewsListItem.dart';
 import 'Api/ApiManager.dart';
@@ -24,7 +25,8 @@ class _NewsFragmentState extends State<NewsFragment> {
   @override
   void initState() {
     super.initState();
-    newsFuture = loadNews(widget.source,this.searchQuery);
+    newsFuture = (searchQuery=="") ? loadNewsfromHome(widget.source,this.searchQuery) :
+        loadNewsfromCategory(widget.source,this.searchQuery);
   }
   @override
   Widget build(BuildContext context) {
