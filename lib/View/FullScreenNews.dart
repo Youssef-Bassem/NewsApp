@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/Model/NewsItem.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'HomeScreenSearch.dart';
 
-class FullScreenNews extends StatelessWidget {
+class FullScreenNews extends StatefulWidget {
 
   NewsItem news;
   FullScreenNews(this.news);
 
   @override
+  _FullScreenNewsState createState() => _FullScreenNewsState();
+}
+
+class _FullScreenNewsState extends State<FullScreenNews> {
+  @override
   Widget build(BuildContext context) {
-    DateTime time1 = DateTime.parse(news.publishedAt);
+    DateTime time1 = DateTime.parse(widget.news.publishedAt);
     String Timeago = convertToAgo(time1);
 
     return Scaffold(
@@ -24,7 +29,7 @@ class FullScreenNews extends StatelessWidget {
         //title: Text('$Category'),
         backgroundColor: HomeScreenSearch.color,
         centerTitle: true,
-        title: Text(news.source.name),
+        title: Text(widget.news.source.name),
       ),
 
       body: SafeArea(
@@ -47,25 +52,45 @@ class FullScreenNews extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 10,),
-                    Image.network(news.urlToImage.toString()),
+                    Image.network(widget.news.urlToImage.toString()),
                     SizedBox(height: 8,),
                     Container(alignment: Alignment.centerLeft,
-                        child:Text(news.source.name,style:TextStyle(fontSize: 14,color: Colors.grey))
+                        child:Text(widget.news.source.name,style:TextStyle(fontSize: 14,color: Colors.grey))
                     ),
                     SizedBox(height: 5,),
-                    Text(news.title,maxLines: 4,overflow: TextOverflow.ellipsis,style: TextStyle(fontWeight: FontWeight.bold),),
+                    Text(widget.news.title,maxLines: 4,overflow: TextOverflow.ellipsis,style: TextStyle(fontWeight: FontWeight.bold),),
                     Container(alignment: Alignment.centerRight,
                         child:Text('$Timeago',style:TextStyle(fontSize: 14,color: Colors.grey))
                     ),
                     SizedBox(height: 30,),
                     Container(
                       color: Colors.white,
-                      child: Text(news.description,style: TextStyle(fontSize: 14),maxLines: 1000,),
+                      child: Text(widget.news.description,style: TextStyle(fontSize: 14),maxLines: 1000,),
                     ),
                     SizedBox(height: 30,),
                     Container(
                       color: Colors.white,
-                      child: Text(news.content,style: TextStyle(fontSize: 14),maxLines: 1000,),
+                      child: Text(widget.news.content,style: TextStyle(fontSize: 14),maxLines: 1000,),
+                    ),
+                    SizedBox(height: 10,),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      child: Row(
+                        children: [
+                          TextButton(
+                              onPressed: () {
+                                  _LaunchUrl();
+                              },
+                              child: Text(
+                                'View Full Article',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              )
+                          ),
+                          Icon(Icons.play_arrow)
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -90,6 +115,19 @@ class FullScreenNews extends StatelessWidget {
       return '${diff.inSeconds} seconds ago';
     } else {
       return 'just now';
+    }
+  }
+
+  _LaunchUrl() async
+  {
+    var urllaunchable = await canLaunch(widget.news.url);
+    if(urllaunchable)
+    {
+      await launch(widget.news.url);
+    }
+    else
+    {
+      print("URL can't be launched.");
     }
   }
 
