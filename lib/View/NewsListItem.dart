@@ -11,7 +11,7 @@ class NewsListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DateTime time1 = DateTime.parse(news.publishedAt);
-    String Timeago = convertToAgo(time1);
+    String timeAgo = convertToAgo(time1);
 
     return Container(
       child: Column(
@@ -36,7 +36,7 @@ class NewsListItem extends StatelessWidget {
           Text(news.description,maxLines: 4,overflow: TextOverflow.ellipsis,),
           SizedBox(height: 5,),
           Container(alignment: Alignment.centerRight,
-              child:Text('$Timeago',style:TextStyle(fontSize: 14,color: Colors.grey))
+              child:Text('$timeAgo',style:TextStyle(fontSize: 14,color: Colors.grey))
           ),
           SizedBox(height: 25,),
         ],

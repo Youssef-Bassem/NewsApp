@@ -27,8 +27,8 @@ class _NewsFragmentState extends State<NewsFragment> {
   @override
   void initState() {
     super.initState();
-    newsFuture = (searchQuery=="") ? loadNewsfromHome(widget.source,this.searchQuery) :
-        loadNewsfromCategory(widget.source,this.searchQuery);
+    newsFuture = (searchQuery=="") ? loadNewsFromHome(widget.source,this.searchQuery) :
+        loadNewsFromCategory(widget.source,this.searchQuery);
   }
   @override
   Widget build(BuildContext context) {

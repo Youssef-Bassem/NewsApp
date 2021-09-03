@@ -9,28 +9,28 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class Search extends StatefulWidget {
-  late var Category;
+  late var category;
   late String searchQuery;
 
-  Search(this.Category,this.searchQuery);
+  Search(this.category,this.searchQuery);
 
   @override
-  _SearchState createState() => _SearchState(this.Category,this.searchQuery);
+  _SearchState createState() => _SearchState(this.category,this.searchQuery);
 }
 
 class _SearchState extends State<Search> {
   late Future<SourceResponse> newsFuture;
   late Source source;
-  late var Category;
+  late var category;
   late String searchQuery;
 
-  _SearchState(this.Category,this.searchQuery);
+  _SearchState(this.category,this.searchQuery);
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    newsFuture = getNewsSources(Category);
+    newsFuture = getNewsSources(category);
   }
 
   @override
@@ -46,7 +46,7 @@ class _SearchState extends State<Search> {
         //title: Text('$Category'),
         backgroundColor: HomeScreenSearch.color,
         centerTitle: true,
-        title: Text('$Category'),
+        title: Text('$category'),
       ),
 /*
       drawer: Container(

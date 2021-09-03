@@ -9,34 +9,31 @@ import '../Model/SourceResponse.dart';
 import 'Search.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
-
 class HomeScreenSearch extends StatefulWidget {
   static const color = Color(0xFF39A552);
-  late var Category;
-
-  HomeScreenSearch(this.Category);
+  late var category;
+  HomeScreenSearch(this.category);
 
   @override
-  _HomeScreenSearchState createState() => _HomeScreenSearchState(this.Category);
+  _HomeScreenSearchState createState() => _HomeScreenSearchState(this.category);
 }
 
 class _HomeScreenSearchState extends State<HomeScreenSearch> {
   late Future<SourceResponse> newsFuture;
   late Source source;
-  late var Category;
+  late var category;
 
   TextEditingController _searchQueryController = TextEditingController();
   bool _isSearching = false;
   late String searchQuery = "";
 
-  _HomeScreenSearchState(this.Category);
+  _HomeScreenSearchState(this.category);
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    newsFuture = getNewsSources(Category);
+    newsFuture = getNewsSources(category);
   }
 
   @override
@@ -45,21 +42,19 @@ class _HomeScreenSearchState extends State<HomeScreenSearch> {
       appBar: AppBar(
         shape: ContinuousRectangleBorder(
             borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(80),
-              bottomRight: Radius.circular(80),
-            )
-        ),
+          bottomLeft: Radius.circular(80),
+          bottomRight: Radius.circular(80),
+        )),
         //title: Text('$Category'),
         backgroundColor: HomeScreenSearch.color,
         centerTitle: true,
-        title: _isSearching ? _buildSearchField() : Text('$Category'),
+        title: _isSearching ? _buildSearchField() : Text('$category'),
         actions: _buildActions(),
       ),
       drawer: SideMenu(),
-
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.only(left: 15,right: 15),
+          padding: EdgeInsets.only(left: 15, right: 15),
           child: Stack(
             children: [
               Container(
@@ -70,21 +65,35 @@ class _HomeScreenSearchState extends State<HomeScreenSearch> {
                   ),
                 ),
               ),
-
               FutureBuilder<SourceResponse>(
-                future: newsFuture,
-                builder: (buildContext,snapshot){
-                  if(snapshot.hasData){
-                    print(snapshot.error);
-                    return HomeTabs(snapshot.data!.sources,""); //******
-                  }
-                  else if(snapshot.hasError){
-                    return Text(AppLocalizations.of(context)!.error); // assignment e3mel zorar reload
-                  }
-                  return Center(
-                    child: CircularProgressIndicator());
-                }
-              ),
+                  future: newsFuture,
+                  builder: (buildContext, snapshot) {
+                    if (snapshot.hasData) {
+                      print(snapshot.error);
+                      return HomeTabs(snapshot.data!.sources, "");
+                    } else if (snapshot.hasError) {
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            myText("Connection timeout"),
+                            myText("Please try again"),
+                            Container(
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.refresh,
+                                  size: 40,
+                                  color: Colors.blueGrey,
+                                ),
+                                onPressed: refreshData,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                    return Center(child: CircularProgressIndicator());
+                  }),
             ],
           ),
         ),
@@ -92,6 +101,22 @@ class _HomeScreenSearchState extends State<HomeScreenSearch> {
     );
   }
 
+  Text myText(String text) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontStyle: FontStyle.italic,
+        fontSize: 25,
+        color: Colors.blueGrey,
+      ),
+    );
+  }
+
+  Future refreshData() async {
+    await Future.delayed(Duration(milliseconds: 1));
+    newsFuture = getNewsSources(category);
+    setState(() {});
+  }
   //******************************* Search Bar *******************************
 
   Widget _buildSearchField() {
@@ -116,7 +141,8 @@ class _HomeScreenSearchState extends State<HomeScreenSearch> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Search(Category,searchQuery)),
+              MaterialPageRoute(
+                  builder: (context) => Search(category, searchQuery)),
             );
           },
         ),
@@ -171,8 +197,5 @@ class _HomeScreenSearchState extends State<HomeScreenSearch> {
       _searchQueryController.clear();
       updateSearchQuery("");
     });
-
-
   }
-
 }
