@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/Model/NewsItem.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'HomeScreenSearch.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class FullScreenNews extends StatefulWidget {
 
@@ -16,7 +17,7 @@ class _FullScreenNewsState extends State<FullScreenNews> {
   @override
   Widget build(BuildContext context) {
     DateTime time1 = DateTime.parse(widget.news.publishedAt);
-    String Timeago = convertToAgo(time1);
+    String timeAgo = convertToAgo(time1);
 
     return Scaffold(
       appBar: AppBar(
@@ -52,7 +53,11 @@ class _FullScreenNewsState extends State<FullScreenNews> {
                 child: Column(
                   children: [
                     SizedBox(height: 10,),
-                    Image.network(widget.news.urlToImage.toString()),
+                    CachedNetworkImage(
+                      imageUrl: widget.news.urlToImage.toString(),
+                      placeholder: (context, url) => CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    ),
                     SizedBox(height: 8,),
                     Container(alignment: Alignment.centerLeft,
                         child:Text(widget.news.source.name,style:TextStyle(fontSize: 14,color: Colors.grey))
@@ -60,7 +65,7 @@ class _FullScreenNewsState extends State<FullScreenNews> {
                     SizedBox(height: 5,),
                     Text(widget.news.title,maxLines: 4,overflow: TextOverflow.ellipsis,style: TextStyle(fontWeight: FontWeight.bold),),
                     Container(alignment: Alignment.centerRight,
-                        child:Text('$Timeago',style:TextStyle(fontSize: 14,color: Colors.grey))
+                        child:Text('$timeAgo',style:TextStyle(fontSize: 14,color: Colors.grey))
                     ),
                     SizedBox(height: 30,),
                     Container(
@@ -79,7 +84,7 @@ class _FullScreenNewsState extends State<FullScreenNews> {
                         children: [
                           TextButton(
                               onPressed: () {
-                                  _LaunchUrl();
+                                  _launchUrl();
                               },
                               child: Text(
                                 'View Full Article',
@@ -118,7 +123,7 @@ class _FullScreenNewsState extends State<FullScreenNews> {
     }
   }
 
-  _LaunchUrl() async
+  _launchUrl() async
   {
     var urllaunchable = await canLaunch(widget.news.url);
     if(urllaunchable)

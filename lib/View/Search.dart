@@ -48,13 +48,6 @@ class _SearchState extends State<Search> {
         centerTitle: true,
         title: Text('$category'),
       ),
-/*
-      drawer: Container(
-        color: Colors.white,
-        child: Text('$searchQuery'),
-      ),
-
- */
 
       body: SafeArea(
         child: Container(
@@ -75,10 +68,33 @@ class _SearchState extends State<Search> {
                   builder: (buildContext,snapshot){
                     if(snapshot.hasData){
                       print(snapshot.error);
-                      return HomeTabs(snapshot.data!.sources,searchQuery); //******
+                      return HomeTabs(snapshot.data!.sources,searchQuery);
                     }
                     else if(snapshot.hasError){
-                      return Text(AppLocalizations.of(context)!.error); // assignment e3mel zorar reload
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            myText("Connection timeout"),
+                            myText("Please try again"),
+                            Container(
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.refresh,
+                                  size: 40,
+                                  color: Colors.blueGrey,
+                                ),
+                                onPressed: (){
+                                  refreshData();
+                                  Center(
+                                      child:CircularProgressIndicator(),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
                     }
                     return Center(
                         child: CircularProgressIndicator());
@@ -91,4 +107,20 @@ class _SearchState extends State<Search> {
     );
   }
 
+  Text myText(String text) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontStyle: FontStyle.italic,
+        fontSize: 25,
+        color: Colors.blueGrey,
+      ),
+    );
+  }
+
+  Future refreshData() async {
+    await Future.delayed(Duration(milliseconds: 1));
+    newsFuture = getNewsSources(widget.category);
+    setState(() {});
+  }
 }

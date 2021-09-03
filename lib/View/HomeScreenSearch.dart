@@ -114,7 +114,7 @@ class _HomeScreenSearchState extends State<HomeScreenSearch> {
 
   Future refreshData() async {
     await Future.delayed(Duration(milliseconds: 1));
-    newsFuture = getNewsSources(category);
+    newsFuture = getNewsSources(widget.category);
     setState(() {});
   }
   //******************************* Search Bar *******************************

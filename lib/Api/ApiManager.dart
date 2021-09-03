@@ -11,7 +11,7 @@ Future<SourceResponse> getNewsSources(String categoryName) async
     'apikey':'2d9942bc4a254f08a50546195b47fbd8',
     'category':'$categoryName'
   });
-  final response = await http.get(uri).timeout(const Duration(seconds: 10),onTimeout: (){
+  final response = await http.get(uri).timeout(const Duration(seconds: 5),onTimeout: (){
     throw TimeoutException('Connection timeout, please try again');
   });
   if( response.statusCode == 200 )
@@ -29,7 +29,9 @@ Future<NewsResponse> loadNewsFromHome(Source source,String searchItem) async {
     'apikey': '2d9942bc4a254f08a50546195b47fbd8',
     'sources': source.id
   });
-  final response = await http.get(uri);
+  final response = await http.get(uri).timeout(const Duration(seconds: 5),onTimeout: (){
+    throw TimeoutException('Connection timeout, please try again');
+  });
   if(response.statusCode >= 200 && response.statusCode < 300){
     return NewsResponse.fromJsonMap(jsonDecode(response.body));
   }
@@ -42,7 +44,9 @@ Future<NewsResponse> loadNewsFromCategory(Source source,String searchItem) async
     'apikey': '2d9942bc4a254f08a50546195b47fbd8',
     'sources': source.id
   });
-  final response = await http.get(uri);
+  final response = await http.get(uri).timeout(const Duration(seconds: 5),onTimeout: (){
+    throw TimeoutException('Connection timeout, please try again');
+  });
   if(response.statusCode >= 200 && response.statusCode < 300){
     return NewsResponse.fromJsonMap(jsonDecode(response.body));
   }
