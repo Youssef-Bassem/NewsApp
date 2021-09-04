@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'FullScreenNews.dart';
@@ -24,7 +25,15 @@ class NewsListItem extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => FullScreenNews(this.news)),
               );
             },
-            child: Image.network(news.urlToImage.toString()),
+            child: CachedNetworkImage(
+              height: 200,
+              fit: BoxFit.cover,
+              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
+              imageUrl: news.urlToImage.toString(),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
+            //Image.network(news.urlToImage.toString()),
           ),
           SizedBox(height: 8,),
           Container(alignment: Alignment.centerLeft,
